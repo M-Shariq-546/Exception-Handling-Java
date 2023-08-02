@@ -1,11 +1,11 @@
 import java.util.Scanner;
 import java.io.IOException;
 
-interface MyTask extends Runnable {
+interface Myfactorial extends Runnable {
     void run();
 }
 
-class Myfact implements MyTask {
+class Myfact implements Myfactorial {
     final long n;
     public Myfact(long n){
         this.n = n;
