@@ -1,15 +1,17 @@
+
+//Created Interface of Runnable
 interface Runnable {
     void myfun();
 }
-
+//child class of exception
 class MySpecialNumberException extends Exception {
     public MySpecialNumberException(String msg) {
         super(msg);
     }
 }
-
+//class to use the parameterized constructor 
 class MySpecialNumber implements Runnable {
-    private static final int x = 0; // You can initialize this with some value
+    private int x = 4; // You can initialize this with some value
     private int y[];
 
     MySpecialNumber(int[] y) {
@@ -17,12 +19,16 @@ class MySpecialNumber implements Runnable {
     }
 
     public void myfun() {
+        
+        //Exception Handling on the base of number comes which is divisible by 10
         try {
             for (int i : y) {
-                x = x + 1;
-                System.out.println("Number : " + x);
-                if (x % 10 == 0) {
+                int vary = x++;
+                if (vary % 10 == 0) {
                     throw new MySpecialNumberException("Special Number Appeared here.\n");
+                }
+                else{
+                    System.out.println("Number : " + vary);
                 }
             }
         } catch (MySpecialNumberException e) {
@@ -30,6 +36,9 @@ class MySpecialNumber implements Runnable {
         }
     }
 
+}
+//Driver Class
+public class Main {
     public static void main(String[] args) {
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
         MySpecialNumber specialNumber = new MySpecialNumber(numbers);
