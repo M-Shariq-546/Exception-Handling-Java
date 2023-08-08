@@ -23,6 +23,7 @@ class MySpecialNumber implements Runnable {
 
         // Exception Handling on the base of number comes which is divisible by 10, 20, 30, etc.
       try {
+          //foreeach loop
             for (int i : y) {
                 int vary = x++;
                 if (vary % 10 == 0 || vary % 20 == 0) {
