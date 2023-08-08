@@ -1,5 +1,3 @@
-
-//Created Interface of Runnable
 interface Runnable {
     void myfun();
 }
@@ -25,7 +23,7 @@ class MySpecialNumber implements Runnable {
             for (int i : y) {
                 int vary = x++;
                 if (vary % 10 == 0) {
-                    throw new MySpecialNumberException("Special Number Appeared here.\n");
+                    throw new MySpecialNumberException("Special Number "+vary +" Appeared here.");
                 }
                 else{
                     System.out.println("Number : " + vary);
