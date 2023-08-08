@@ -1,13 +1,16 @@
+// Created Interface of Runnable
 interface Runnable {
-    void myfun();
+    void myfun() throws MySpecialNumberException;
 }
-//child class of exception
+
+// Child class of exception
 class MySpecialNumberException extends Exception {
     public MySpecialNumberException(String msg) {
         super(msg);
     }
 }
-//class to use the parameterized constructor 
+
+// Class to use the parameterized constructor
 class MySpecialNumber implements Runnable {
     private int x = 4; // You can initialize this with some value
     private int y[];
@@ -16,31 +19,45 @@ class MySpecialNumber implements Runnable {
         this.y = y;
     }
 
-    public void myfun() {
-        
-        //Exception Handling on the base of number comes which is divisible by 10
-        try {
-            //foreach loop usage
+    public void myfun() throws MySpecialNumberException {
+
+        // Exception Handling on the base of number comes which is divisible by 10, 20, 30, etc.
+      try {
             for (int i : y) {
                 int vary = x++;
-                if (vary % 10 == 0) {
-                    throw new MySpecialNumberException("Special Number "+vary +" Appeared here.");
-                }
-                else{
+                if (vary % 10 == 0 || vary % 20 == 0) {
+                    throw new MySpecialNumberException("Special Number Appeared here: " + vary + "\n");
+                } else {
                     System.out.println("Number : " + vary);
                 }
             }
         } catch (MySpecialNumberException e) {
             System.out.println("Exception: " + e.getMessage());
+        } finally {
+            System.out.println("Finally block executed.");
+            x = 11; // Reset x to 11
+            for (int i = x; i < y.length; i++) {
+                int vary = x++;
+                System.out.println("Number : " + vary);
+            }
         }
     }
-
 }
-//Driver Class
+
+// Driver Class
 public class Main {
     public static void main(String[] args) {
-        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+        int[] numbers = new int[20];
+        for (int i = 0; i < 20; i++) {
+            numbers[i] = i + 1;
+        }
+
         MySpecialNumber specialNumber = new MySpecialNumber(numbers);
-        specialNumber.myfun();
+
+        try {
+            specialNumber.myfun();
+        } catch (MySpecialNumberException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
     }
 }
